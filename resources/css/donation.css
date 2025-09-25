@@ -1,0 +1,312 @@
+/* Donation */
+
+.donation-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.form-section {
+    background: white;
+    padding: 48px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--gray-200);
+}
+
+.form-header {
+    margin-bottom: 32px;
+}
+
+.form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+}
+
+.form-subtitle {
+    color: var(--gray-600);
+    font-size: 1.125rem;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--gray-700);
+    font-size: 0.875rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.2s;
+    background: white;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+}
+
+.checkbox-group {
+    margin: 24px 0;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--gray-700);
+    line-height: 1.5;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    accent-color: var(--primary);
+}
+
+.btn-donate {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 24px;
+    transition: all 0.3s;
+    box-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+}
+
+.btn-donate:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(249, 115, 22, 0.3);
+}
+
+.progress {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.progress-step {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.progress-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.progress-circle.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 2px 4px rgba(249, 115, 22, 0.3);
+}
+
+.progress-circle.inactive {
+    background: var(--gray-300);
+    color: var(--gray-600);
+}
+
+.progress-line {
+    width: 32px;
+    height: 2px;
+    background: var(--gray-300);
+    transition: all 0.3s;
+}
+
+.progress-line.active {
+    background: var(--primary);
+}
+
+.progress-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--gray-600);
+}
+
+.image-section {
+    background: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1000&auto=format&fit=crop') center/cover;
+    border-radius: 16px;
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.8), rgba(234, 88, 12, 0.8));
+    border-radius: 16px;
+}
+
+.image-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    padding: 48px;
+}
+
+.image-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.image-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .donation-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    
+    .form-section {
+        padding: 32px;
+    }
+    
+    .image-section {
+        min-height: 300px;
+    }
+    
+    .image-title {
+        font-size: 2rem;
+    }
+    
+    .progress {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .progress-step {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .progress-line {
+        width: 2px;
+        height: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .donation-container {
+        gap: 24px;
+    }
+    
+    .form-section {
+        padding: 24px 16px;
+    }
+    
+    .image-section {
+        min-height: 250px;
+    }
+    
+    .image-title {
+        font-size: 1.5rem;
+    }
+    
+    .image-subtitle {
+        font-size: 1rem;
+    }
+    
+    .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .form-group label {
+        font-size: 0.85rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+    
+    .progress-step {
+        padding: 8px;
+    }
+    
+    .progress-step-number {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+    
+    .progress-step-text {
+        font-size: 0.8rem;
+    }
+}

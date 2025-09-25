@@ -1,0 +1,193 @@
+/* Priorities Page Specific Styles */
+
+/* Priority Grid */
+.priority-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 32px;
+    margin: 60px 0;
+}
+
+.priority-card {
+    background: white;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--gray-200);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.priority-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+.priority-card.urgent {
+    border-left: 5px solid #ef4444;
+    background: linear-gradient(135deg, #fff, #fef2f2);
+}
+
+.priority-card.high {
+    border-left: 5px solid #f59e0b;
+    background: linear-gradient(135deg, #fff, #fffbeb);
+}
+
+.priority-card.medium {
+    border-left: 5px solid #eab308;
+    background: linear-gradient(135deg, #fff, #fefce8);
+}
+
+.priority-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.priority-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--gray-900);
+}
+
+.priority-description {
+    color: var(--gray-600);
+    margin-bottom: 24px;
+    line-height: 1.6;
+}
+
+.priority-items {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 24px;
+}
+
+.priority-items li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.priority-items li:last-child {
+    border-bottom: none;
+}
+
+.priority-items li::before {
+    content: "•";
+    color: var(--primary);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.priority-level {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.priority-level.urgent {
+    background: #ef4444;
+    color: white;
+}
+
+.priority-level.high {
+    background: #f59e0b;
+    color: white;
+}
+
+.priority-level.medium {
+    background: #eab308;
+    color: var(--gray-900);
+}
+
+.donate-btn {
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-block;
+    transition: all 0.3s;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
+}
+
+.donate-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(249, 115, 22, 0.3);
+}
+
+/* Responsive adjustments for priorities */
+@media (max-width: 768px) {
+    .priority-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .priority-card {
+        padding: 24px;
+    }
+    
+    .priority-title {
+        font-size: 1.25rem;
+    }
+    
+    .priority-description {
+        font-size: 0.9rem;
+    }
+    
+    .priority-icon {
+        font-size: 2.5rem;
+    }
+    
+    .priority-level {
+        top: 12px;
+        right: 12px;
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .priority-grid {
+        gap: 16px;
+    }
+    
+    .priority-card {
+        padding: 20px;
+    }
+    
+    .priority-title {
+        font-size: 1.1rem;
+    }
+    
+    .priority-description {
+        font-size: 0.85rem;
+    }
+    
+    .priority-icon {
+        font-size: 2rem;
+    }
+    
+    .priority-items li {
+        padding: 6px 0;
+        font-size: 0.9rem;
+    }
+    
+    .donate-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
