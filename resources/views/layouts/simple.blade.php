@@ -36,14 +36,34 @@
                             <a href="/prioridades" class="nav-link {{ request()->is('prioridades') ? 'active' : '' }}">Prioridades</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#contato" class="nav-link">Contato</a>
+                            <a href="/contato" class="nav-link {{ request()->is('contato') ? 'active' : '' }}">Contato</a>
                         </li>
                         <li class="nav-item">
                             @auth
-                                <form action="{{ route('logout') }}" method="POST" style="display:inline">
-                                    @csrf
-                                    <button type="submit" class="cta-button danger">Sair</button>
-                                </form>
+                                <div class="user-menu">
+                                    <button class="user-menu-toggle" id="userMenuToggle">
+                                        <span class="user-name">{{ Auth::user()->name }}</span>
+                                        <span class="dropdown-arrow">▼</span>
+                                    </button>
+                                    <div class="user-dropdown" id="userDropdown">
+                                        <a href="{{ route('account') }}" class="dropdown-item">
+                                            <span class="dropdown-icon">👤</span>
+                                            Conta
+                                        </a>
+                                        <a href="{{ route('donation.status') }}" class="dropdown-item">
+                                            <span class="dropdown-icon">📊</span>
+                                            Status das Doações
+                                        </a>
+                                        <hr class="dropdown-divider">
+                                        <form action="{{ route('logout') }}" method="POST" class="dropdown-form">
+                                            @csrf
+                                            <button type="submit" class="dropdown-item logout">
+                                                <span class="dropdown-icon">🚪</span>
+                                                Sair
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
                             @else
                                 <a href="/login" class="cta-button">Login</a>
                             @endauth
@@ -63,5 +83,30 @@
     @else
         <script src="{{ asset('js/hamburger.js') }}"></script>
     @endif
+    
+    <script>
+        // User dropdown menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const userMenuToggle = document.getElementById('userMenuToggle');
+            const userDropdown = document.getElementById('userDropdown');
+            
+            if (userMenuToggle && userDropdown) {
+                userMenuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    userDropdown.classList.toggle('show');
+                });
+                
+                // Fechar dropdown ao clicar fora
+                document.addEventListener('click', function() {
+                    userDropdown.classList.remove('show');
+                });
+                
+                // Prevenir fechamento ao clicar dentro do dropdown
+                userDropdown.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                });
+            }
+        });
+    </script>
 </body>
 </html>

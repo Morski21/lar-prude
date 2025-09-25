@@ -14,8 +14,33 @@
                 <h1 class="form-title">Fazer Doação</h1>
                 <p class="form-subtitle">Preencha seus dados para continuar com a doação</p>
             </div>
+
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <strong>Erro:</strong>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    <strong>Erro:</strong> {{ session('error') }}
+                </div>
+            @endif
+
+            @guest
+                <div class="alert alert-warning">
+                    <strong>Atenção:</strong> Você precisa estar logado para fazer uma doação. 
+                    <a href="{{ route('login') }}">Faça login</a> ou 
+                    <a href="{{ route('register') }}">cadastre-se</a> primeiro.
+                </div>
+            @endguest
             
-            <form action="#" method="POST">
+            <form action="{{ route('donation.step1') }}" method="POST">
                 @csrf
                 <div class="form-group">
                     <label for="nome">Nome *</label>
@@ -37,15 +62,6 @@
                     <input type="text" id="nascimento" name="nascimento" placeholder="DD/MM/AAAA" required>
                 </div>
                 
-                <div class="form-group">
-                    <label for="sexo">Sexo *</label>
-                    <select id="sexo" name="sexo" required>
-                        <option value="">Selecione</option>
-                        <option value="masculino">Masculino</option>
-                        <option value="feminino">Feminino</option>
-                        <option value="outro">Outro</option>
-                    </select>
-                </div>
                 
                 <div class="checkbox-group">
                     <label>

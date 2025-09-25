@@ -1,0 +1,349 @@
+/* Status Page Styles */
+
+.status-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 20px 40px;
+}
+
+/* Mensagem de sucesso */
+.alert {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    border-left: 4px solid;
+}
+
+.alert-success {
+    background: #f0fdf4;
+    border-color: #22c55e;
+    color: #166534;
+}
+
+.alert-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.alert-content h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+}
+
+.alert-content p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.status-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.status-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+}
+
+.status-subtitle {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+}
+
+.donations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.donation-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--gray-300);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.donation-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.donation-card.status-pendente {
+    border-left-color: #f59e0b;
+}
+
+.donation-card.status-em_espera {
+    border-left-color: #6366f1;
+}
+
+.donation-card.status-aceita {
+    border-left-color: #10b981;
+}
+
+.donation-card.status-recusada {
+    border-left-color: #ef4444;
+}
+
+.donation-card.status-reagendada {
+    border-left-color: #f59e0b;
+}
+
+.donation-card.status-confirmada {
+    border-left-color: #10b981;
+}
+
+.donation-card.status-recebida {
+    border-left-color: #3b82f6;
+}
+
+.donation-card.status-cancelada {
+    border-left-color: #ef4444;
+}
+
+.donation-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.donation-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.donation-date {
+    color: var(--gray-500);
+    font-size: 0.875rem;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.status-pendente {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-badge.status-em_espera {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+
+.status-badge.status-aceita {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-badge.status-recusada {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status-badge.status-reagendada {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-badge.status-confirmada {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.status-badge.status-recebida {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.status-badge.status-cancelada {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.donation-details {
+    margin-bottom: 24px;
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 8px;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--gray-700);
+    min-width: 120px;
+    margin-right: 12px;
+}
+
+.detail-value {
+    color: var(--gray-600);
+    flex: 1;
+}
+
+.donation-timeline {
+    position: relative;
+    padding-left: 32px;
+}
+
+.donation-timeline::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--gray-200);
+}
+
+.timeline-step {
+    position: relative;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.timeline-step:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-step::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gray-300);
+    border: 3px solid white;
+    z-index: 1;
+}
+
+.timeline-step.completed::before {
+    background: #10b981;
+}
+
+.timeline-step.cancelled::before {
+    background: #ef4444;
+}
+
+.timeline-step.pending::before {
+    background: #f59e0b;
+}
+
+.timeline-icon {
+    font-size: 1.5rem;
+    margin-top: 4px;
+}
+
+.timeline-content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.timeline-content p {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: var(--gray-600);
+    margin-bottom: 24px;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #e55a1a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .status-container {
+        padding: 100px 16px 40px;
+    }
+    
+    .status-title {
+        font-size: 2rem;
+    }
+    
+    .donation-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .donation-details {
+        margin-bottom: 20px;
+    }
+    
+    .detail-row {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .detail-label {
+        min-width: auto;
+        margin-right: 0;
+    }
+    
+    .donation-timeline {
+        padding-left: 24px;
+    }
+    
+    .donation-timeline::before {
+        left: 12px;
+    }
+    
+    .timeline-step::before {
+        left: -12px;
+    }
+}

@@ -1,4 +1,4 @@
-/* Lar dos Idosos - Main Styles */
+/* Main Styles */
 :root {
     --primary: #f97316;
     --secondary: #ea580c;
@@ -16,7 +16,7 @@
     --gray-900: #111827;
 }
 
-/* Reset and Base Styles */
+/* Reset */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -30,7 +30,7 @@ body {
     line-height: 1.6;
 }
 
-/* Navbar Styles */
+/* Navbar */
 .navbar {
     position: fixed;
     top: 0;
@@ -162,7 +162,7 @@ body {
     background: #b91c1c;
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
@@ -251,7 +251,7 @@ body {
     transform: translateY(-2px);
 }
 
-/* Section Styles */
+/* Sections */
 .section {
     padding: 100px 0;
 }
@@ -282,7 +282,7 @@ body {
     margin: 0 auto;
 }
 
-/* Card Styles */
+/* Cards */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -337,7 +337,7 @@ body {
     font-weight: 500;
 }
 
-/* Features Grid */
+/* Features */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -437,7 +437,7 @@ body {
     font-size: 0.875rem;
 }
 
-/* CTA Section */
+/* CTA */
 .cta-section {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
@@ -520,7 +520,7 @@ body {
     color: var(--primary);
 }
 
-/* Carousel Styles */
+/* Carousel */
 .carousel-container {
     margin: 60px 0;
     position: relative;
@@ -707,7 +707,7 @@ body {
     background: rgba(255, 255, 255, 0.8);
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
     .hero h1 {
         font-size: 2.5rem;
@@ -792,7 +792,7 @@ body {
     }
 }
 
-/* Menu Hambúrguer */
+/* Hamburger */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -807,7 +807,6 @@ body {
     position: relative;
 }
 
-/* Forçar visibilidade em telas pequenas */
 @media (max-width: 768px) {
     .hamburger {
         display: flex !important;
@@ -838,7 +837,6 @@ body {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Mobile específico */
 @media (max-width: 768px) {
     .hamburger {
         display: flex !important;
@@ -1035,4 +1033,105 @@ body {
         padding: 12px 24px;
         font-size: 14px;
     }
+}
+
+/* User Dropdown Menu */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-menu-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.user-menu-toggle:hover {
+    background: #e55a1a;
+}
+
+.user-name {
+    font-size: 0.9rem;
+}
+
+.dropdown-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.user-menu-toggle.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 200px;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.user-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: var(--gray-700);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background: var(--gray-50);
+    color: var(--primary);
+}
+
+.dropdown-item.logout:hover {
+    background: #fee;
+    color: #dc2626;
+}
+
+.dropdown-icon {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.dropdown-divider {
+    margin: 8px 0;
+    border: none;
+    border-top: 1px solid var(--gray-200);
+}
+
+.dropdown-form {
+    margin: 0;
 }

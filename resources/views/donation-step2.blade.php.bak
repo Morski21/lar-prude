@@ -1,0 +1,162 @@
+@extends('layouts.simple')
+
+@section('title', 'Dados da Doação - Lar dos Idosos')
+
+@push('styles')
+<link rel="stylesheet" href="{{ asset('css/donation.css') }}">
+@endpush
+
+@section('content')
+<main class="main-content">
+    <div class="donation-container">
+        <div class="form-section">
+            <div class="form-header">
+                <h1 class="form-title">Dados da Doação</h1>
+                <p class="form-subtitle">Escolha o tipo e valor da sua doação</p>
+            </div>
+            
+            <!-- Debug: Verificar se step1_data existe -->
+            @if(!isset($step1Data))
+                <div class="alert alert-danger">
+                    <strong>Erro:</strong> Dados da etapa 1 não encontrados. <a href="{{ route('donation') }}">Voltar ao início</a>
+                </div>
+            @endif
+
+            <form action="{{ route('donation.step2.process') }}" method="POST">
+                @csrf
+                <input type="hidden" name="step1_data" value="{{ json_encode($step1Data ?? []) }}">
+                
+                <div class="donation-type-section">
+                    <h3 class="section-title">Tipo de Doação</h3>
+                    <div class="donation-type-options">
+                        <label class="donation-type-option">
+                            <input type="radio" name="tipo_doacao" value="dinheiro" required>
+                            <div class="option-card">
+                                <div class="option-icon">💰</div>
+                                <h4>Doação em Dinheiro</h4>
+                                <p>Contribuição financeira para manutenção e melhorias</p>
+                            </div>
+                        </label>
+                        
+                        <label class="donation-type-option">
+                            <input type="radio" name="tipo_doacao" value="alimentos" required>
+                            <div class="option-card">
+                                <div class="option-icon">🛒</div>
+                                <h4>Doação de Alimentos</h4>
+                                <p>Alimentos não perecíveis e produtos de higiene</p>
+                            </div>
+                        </label>
+                        
+                        <label class="donation-type-option">
+                            <input type="radio" name="tipo_doacao" value="material" required>
+                            <div class="option-card">
+                                <div class="option-icon">📦</div>
+                                <h4>Doação de Materiais</h4>
+                                <p>Roupas, cobertores, materiais de limpeza</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="donation-value-section">
+                    <h3 class="section-title">Valor da Doação</h3>
+                    
+                    <div class="value-options" id="value-options" style="display: none;">
+                        <div class="quick-values">
+                            <button type="button" class="value-btn" data-value="25">R$ 25</button>
+                            <button type="button" class="value-btn" data-value="50">R$ 50</button>
+                            <button type="button" class="value-btn" data-value="100">R$ 100</button>
+                            <button type="button" class="value-btn" data-value="200">R$ 200</button>
+                            <button type="button" class="value-btn" data-value="500">R$ 500</button>
+                        </div>
+                        
+                        <div class="custom-value">
+                            <label for="valor_customizado">Ou digite um valor personalizado:</label>
+                            <div class="input-group">
+                                <span class="currency">R$</span>
+                                <input type="number" id="valor_customizado" name="valor_customizado" min="1" step="0.01" placeholder="0,00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="non-monetary-info" id="non-monetary-info" style="display: none;">
+                        <div class="info-card">
+                            <h4>📋 Informações Importantes</h4>
+                            <p>Para doações de alimentos e materiais, entre em contato conosco pelo telefone <strong>(42) 3446-1494</strong> para combinarmos a melhor forma de entrega.</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-actions">
+                    <a href="{{ route('donation') }}" class="btn-secondary">Voltar</a>
+                    <button type="submit" class="btn-donate">Continuar</button>
+                </div>
+            </form>
+            
+            <div class="progress">
+                <div class="progress-step">
+                    <div class="progress-circle completed">✓</div>
+                    <span class="progress-text">DADOS PESSOAIS</span>
+                </div>
+                <div class="progress-line active"></div>
+                <div class="progress-step">
+                    <div class="progress-circle active">2</div>
+                    <span class="progress-text">DADOS DOAÇÃO</span>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step">
+                    <div class="progress-circle inactive">3</div>
+                    <span class="progress-text">DADOS ENDEREÇO</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-section">
+            <div class="image-content">
+                <h2 class="image-title">Cada Contribuição Conta</h2>
+                <p class="image-subtitle">Seja qual for o valor ou tipo, sua doação nos ajuda a continuar nosso trabalho de cuidado e acolhimento</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const donationTypeInputs = document.querySelectorAll('input[name="tipo_doacao"]');
+    const valueOptions = document.getElementById('value-options');
+    const nonMonetaryInfo = document.getElementById('non-monetary-info');
+    const valueButtons = document.querySelectorAll('.value-btn');
+    const customValueInput = document.getElementById('valor_customizado');
+
+    // Mostrar/ocultar seções baseado no tipo de doação
+    donationTypeInputs.forEach(input => {
+        input.addEventListener('change', function() {
+            if (this.value === 'dinheiro') {
+                valueOptions.style.display = 'block';
+                nonMonetaryInfo.style.display = 'none';
+            } else {
+                valueOptions.style.display = 'none';
+                nonMonetaryInfo.style.display = 'block';
+            }
+        });
+    });
+
+    // Seleção de valores rápidos
+    valueButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            valueButtons.forEach(btn => btn.classList.remove('selected'));
+            this.classList.add('selected');
+            customValueInput.value = this.dataset.value;
+        });
+    });
+
+    // Limpar seleção de botões quando digitar valor personalizado
+    customValueInput.addEventListener('input', function() {
+        valueButtons.forEach(btn => btn.classList.remove('selected'));
+    });
+});
+</script>
+@endpush
+@endsection

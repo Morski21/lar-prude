@@ -1,5 +1,434 @@
 /* Donation */
 
+/* Estilos para etapa 2 - Dados da Doação */
+.donation-type-section {
+    margin-bottom: 32px;
+}
+
+.section-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+}
+
+.donation-type-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.donation-type-option {
+    cursor: pointer;
+}
+
+.donation-type-option input[type="radio"] {
+    display: none;
+}
+
+.option-card {
+    padding: 20px;
+    border: 2px solid var(--gray-200);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.option-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(242, 106, 33, 0.15);
+}
+
+.donation-type-option input[type="radio"]:checked + .option-card {
+    border-color: var(--primary);
+    background: rgba(242, 106, 33, 0.05);
+}
+
+.option-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+}
+
+.option-card h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+}
+
+.option-card p {
+    color: var(--gray-600);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.donation-value-section {
+    margin-bottom: 32px;
+}
+
+.value-options {
+    margin-top: 16px;
+}
+
+.quick-values {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.value-btn {
+    padding: 12px 16px;
+    border: 2px solid var(--gray-200);
+    border-radius: 8px;
+    background: white;
+    color: var(--gray-700);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.value-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.value-btn.selected {
+    border-color: var(--primary);
+    background: var(--primary);
+    color: white;
+}
+
+.custom-value {
+    margin-top: 16px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.currency {
+    position: absolute;
+    left: 12px;
+    color: var(--gray-500);
+    font-weight: 600;
+    z-index: 1;
+}
+
+.input-group input {
+    padding-left: 40px;
+}
+
+.non-monetary-info {
+    margin-top: 16px;
+}
+
+.info-card {
+    background: var(--gray-50);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+}
+
+.info-card h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+}
+
+.items-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.item-category h5 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 8px;
+}
+
+.item-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.item-category li {
+    padding: 4px 0;
+    color: var(--gray-600);
+    font-size: 0.875rem;
+}
+
+.item-category li::before {
+    content: "•";
+    color: var(--primary);
+    margin-right: 8px;
+}
+
+.donation-frequency-section {
+    margin-bottom: 32px;
+}
+
+.frequency-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.frequency-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.frequency-option:hover {
+    background: var(--gray-50);
+}
+
+.frequency-option input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--gray-300);
+    border-radius: 50%;
+    margin-right: 12px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.frequency-option input[type="radio"]:checked + .radio-custom {
+    border-color: var(--primary);
+}
+
+.frequency-option input[type="radio"]:checked + .radio-custom::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+}
+
+.frequency-text {
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.form-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.btn-secondary {
+    flex: 1;
+    padding: 12px 24px;
+    border: 2px solid var(--gray-300);
+    border-radius: 8px;
+    background: white;
+    color: var(--gray-700);
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    border-color: var(--gray-400);
+    background: var(--gray-50);
+}
+
+/* Responsive para etapa 2 */
+@media (max-width: 768px) {
+    .quick-values {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .items-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+}
+
+/* Estilos para etapa 3 - Endereço e Horários */
+.address-section {
+    margin-bottom: 32px;
+}
+
+.lar-address-card {
+    background: var(--gray-50);
+    padding: 24px;
+    border-radius: 12px;
+    border: 2px solid var(--gray-200);
+    text-align: center;
+}
+
+.address-info h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+}
+
+.address-info p {
+    margin-bottom: 8px;
+    color: var(--gray-700);
+    font-size: 1rem;
+}
+
+.address-info p:last-child {
+    margin-bottom: 0;
+}
+
+.schedule-section {
+    margin-bottom: 32px;
+}
+
+.schedule-options {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.schedule-day {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+}
+
+.schedule-day h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.time-slots {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+}
+
+.time-slot {
+    cursor: pointer;
+    display: block;
+}
+
+.time-slot input[type="radio"] {
+    display: none;
+}
+
+.time-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border: 2px solid var(--gray-200);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.time-label:hover {
+    border-color: var(--primary);
+    background: rgba(242, 106, 33, 0.05);
+}
+
+.time-slot input[type="radio"]:checked + .time-label {
+    border-color: var(--primary);
+    background: rgba(242, 106, 33, 0.1);
+}
+
+.time-slot.selected .time-label {
+    border-color: var(--primary);
+    background: rgba(242, 106, 33, 0.1);
+}
+
+.time-icon {
+    font-size: 1.5rem;
+}
+
+.time-text {
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.schedule-note {
+    background: #fef3c7;
+    padding: 16px;
+    border-radius: 8px;
+    border-left: 4px solid #f59e0b;
+    margin-top: 16px;
+}
+
+.schedule-note p {
+    margin: 0;
+    color: #92400e;
+    font-size: 0.875rem;
+}
+
+.instructions-section {
+    margin-bottom: 32px;
+}
+
+.instructions-section textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+    transition: border-color 0.3s ease;
+}
+
+.instructions-section textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* Responsive para etapa 3 */
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .delivery-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .cep-group,
+    .address-group,
+    .number-group,
+    .complement-group,
+    .neighborhood-group,
+    .city-group,
+    .state-group {
+        grid-column: 1;
+    }
+}
+
 .donation-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -308,5 +737,280 @@
     
     .progress-step-text {
         font-size: 0.8rem;
+    }
+}
+
+/* Estilos para páginas de confirmação e sucesso */
+.confirmation-summary {
+    margin-bottom: 32px;
+}
+
+.summary-card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    margin-bottom: 24px;
+}
+
+.summary-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.summary-section {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.summary-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.summary-section h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 12px;
+}
+
+.summary-item {
+    display: flex;
+    margin-bottom: 8px;
+    gap: 12px;
+}
+
+.summary-item:last-child {
+    margin-bottom: 0;
+}
+
+.summary-item .label {
+    font-weight: 600;
+    color: var(--gray-700);
+    min-width: 100px;
+}
+
+.summary-item .value {
+    color: var(--gray-600);
+    flex: 1;
+}
+
+.confirmation-info {
+    margin-top: 24px;
+}
+
+.info-card {
+    background: #f0f9ff;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #0ea5e9;
+}
+
+.info-card h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 12px;
+}
+
+.info-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-card li {
+    padding: 4px 0;
+    color: var(--gray-700);
+    position: relative;
+    padding-left: 20px;
+}
+
+.info-card li::before {
+    content: "•";
+    color: #0ea5e9;
+    position: absolute;
+    left: 0;
+}
+
+/* Página de sucesso */
+.success-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.success-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+
+.success-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+}
+
+.success-subtitle {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+}
+
+.success-details {
+    margin-bottom: 32px;
+}
+
+.detail-card {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+    margin-bottom: 24px;
+}
+
+.detail-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-item .label {
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.detail-item .value {
+    color: var(--gray-600);
+}
+
+.next-steps {
+    background: var(--gray-50);
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px solid var(--gray-200);
+}
+
+.next-steps h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--gray-200);
+}
+
+.step-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 4px;
+}
+
+.step-content p {
+    font-size: 0.875rem;
+    color: var(--gray-600);
+}
+
+.success-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px 24px;
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #e55a1a;
+}
+
+.btn-outline {
+    display: inline-block;
+    padding: 12px 24px;
+    background: white;
+    color: var(--gray-700);
+    text-decoration: none;
+    border: 2px solid var(--gray-300);
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    border-color: var(--gray-400);
+    background: var(--gray-50);
+}
+
+/* Responsive para confirmação e sucesso */
+@media (max-width: 768px) {
+    .summary-item {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .summary-item .label {
+        min-width: auto;
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    
+    .success-actions {
+        flex-direction: column;
+    }
+    
+    .success-title {
+        font-size: 1.5rem;
     }
 }
