@@ -41,25 +41,20 @@
             </div>
 
             <div class="quick-actions">
-                <a href="/doar" class="action-card">
+                <a href="{{ route('donation') }}" class="action-card">
                     <span class="action-icon">💝</span>
-                    <div class="action-title">Nova Doação</div>
-                    <div class="action-description">Registrar uma nova doação recebida</div>
+                    <div class="action-title">Fazer Doação</div>
+                    <div class="action-description">Contribua com o Lar dos Idosos</div>
                 </a>
-                <a href="/prioridades" class="action-card">
-                    <span class="action-icon">📋</span>
-                    <div class="action-title">Ver Prioridades</div>
-                    <div class="action-description">Consultar itens mais necessários</div>
+                <a href="{{ route('donation.status') }}" class="action-card">
+                    <span class="action-icon">📊</span>
+                    <div class="action-title">Minhas Doações</div>
+                    <div class="action-description">Acompanhe suas contribuições</div>
                 </a>
-                <a href="#relatorios" class="action-card">
-                    <span class="action-icon">📈</span>
-                    <div class="action-title">Relatórios</div>
-                    <div class="action-description">Visualizar estatísticas e relatórios</div>
-                </a>
-                <a href="#configuracoes" class="action-card">
-                    <span class="action-icon">⚙️</span>
-                    <div class="action-title">Configurações</div>
-                    <div class="action-description">Gerenciar configurações do sistema</div>
+                <a href="{{ route('account') }}" class="action-card">
+                    <span class="action-icon">👤</span>
+                    <div class="action-title">Minha Conta</div>
+                    <div class="action-description">Gerencie seus dados</div>
                 </a>
             </div>
         </div>

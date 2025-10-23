@@ -14,6 +14,7 @@ class Doacao extends Model
         'email', 
         'telefone',
         'data_nascimento',
+        'sexo',
         'aceita_comunicacoes',
         'tipo_doacao',
         'valor',
@@ -108,5 +109,19 @@ class Doacao extends Model
         ];
 
         return $frequencias[$this->frequencia] ?? $this->frequencia;
+    }
+
+    public function getEnderecoCompletoAttribute()
+    {
+        $endereco = $this->logradouro . ', ' . $this->numero;
+        
+        if ($this->complemento) {
+            $endereco .= ', ' . $this->complemento;
+        }
+        
+        $endereco .= ', ' . $this->bairro . ', ' . $this->cidade . '/' . $this->estado;
+        $endereco .= ' - CEP: ' . $this->cep;
+        
+        return $endereco;
     }
 }

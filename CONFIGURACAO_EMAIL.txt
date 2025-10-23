@@ -1,0 +1,95 @@
+# 📧 CONFIGURAÇÃO DE E-MAIL - LAR DOS IDOSOS
+
+## 🎯 OPÇÃO 1: MAILTRAP (RECOMENDADO PARA TESTES)
+
+### Passo 1: Criar conta
+1. Acesse: https://mailtrap.io/
+2. Crie conta gratuita
+3. Vá em "Email Testing" → "Inboxes" → "My Inbox"
+4. Copie as credenciais SMTP
+
+### Passo 2: Alterar no arquivo .env
+Substitua estas linhas no seu arquivo .env:
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=SEU_USERNAME_DO_MAILTRAP
+MAIL_PASSWORD=SUA_PASSWORD_DO_MAILTRAP
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="contato@laridosos.org.br"
+MAIL_FROM_NAME="Lar dos Idosos"
+
+### Passo 3: Limpar cache
+Execute no terminal:
+php artisan config:clear
+php artisan cache:clear
+
+## 🎯 OPÇÃO 2: GMAIL (PARA PRODUÇÃO)
+
+### Passo 1: Configurar Gmail
+1. Acesse sua conta Gmail
+2. Vá em "Gerenciar sua Conta Google"
+3. Segurança → Verificação em duas etapas (ativar)
+4. Senhas de app → Gerar nova senha
+5. Copie a senha de 16 dígitos
+
+### Passo 2: Alterar no arquivo .env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=seu-email@gmail.com
+MAIL_PASSWORD=sua-senha-de-app-16-digitos
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="seu-email@gmail.com"
+MAIL_FROM_NAME="Lar dos Idosos"
+
+## 🎯 OPÇÃO 3: SENDGRID (PROFISSIONAL)
+
+### Passo 1: Criar conta SendGrid
+1. Acesse: https://sendgrid.com/
+2. Crie conta gratuita (100 e-mails/dia)
+3. Crie uma API Key
+4. Verifique seu domínio/e-mail
+
+### Passo 2: Alterar no arquivo .env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.sendgrid.net
+MAIL_PORT=587
+MAIL_USERNAME=apikey
+MAIL_PASSWORD=SUA_API_KEY_DO_SENDGRID
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="contato@seudominio.com"
+MAIL_FROM_NAME="Lar dos Idosos"
+
+## ⚡ DEPOIS DE CONFIGURAR:
+
+1. Execute no terminal:
+   php artisan config:clear
+
+2. Teste fazendo uma doação no sistema
+
+3. Verifique se o e-mail chegou:
+   - Mailtrap: Na sua inbox do Mailtrap
+   - Gmail: Na caixa de entrada
+   - SendGrid: No painel de atividade
+
+## 🔍 PARA TESTAR:
+
+1. Faça login como usuário normal
+2. Crie uma doação
+3. Faça login como admin (admin@laridosos.com / admin123)
+4. Aceite a doação
+5. Verifique se os e-mails foram enviados
+
+## 🚨 SE DER ERRO:
+
+1. Verifique as credenciais
+2. Execute: php artisan config:clear
+3. Veja o log: storage/logs/laravel.log
+4. Teste com Mailtrap primeiro (mais fácil)
+
+## 📞 SUPORTE:
+
+Se precisar de ajuda, me avise qual opção escolheu e qual erro está dando!
+

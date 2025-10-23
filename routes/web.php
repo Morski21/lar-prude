@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\AccountController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('home');
@@ -47,6 +48,19 @@ Route::get('/doacoes/status', [DonationController::class, 'status'])->middleware
 Route::get('/doar-simple', function () {
     return view('donation-simple');
 })->name('donation-simple');
+
+// Área Administrativa
+Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/doacoes/{id}', [AdminController::class, 'showDonation'])->name('donations.show');
+    
+    // Ações sobre doações
+    Route::post('/doacoes/{id}/aceitar', [AdminController::class, 'acceptDonation'])->name('donations.accept');
+    Route::post('/doacoes/{id}/recusar', [AdminController::class, 'refuseDonation'])->name('donations.refuse');
+    Route::post('/doacoes/{id}/reagendar', [AdminController::class, 'rescheduleDonation'])->name('donations.reschedule');
+    Route::post('/doacoes/{id}/recebida', [AdminController::class, 'markAsReceived'])->name('donations.received');
+    Route::post('/doacoes/{id}/status', [AdminController::class, 'updateStatus'])->name('donations.update-status');
+});
 
 Route::get('/responsive-test', function () {
     return view('responsive-test');

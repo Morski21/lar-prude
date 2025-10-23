@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Doacao;
 use App\Models\Endereco;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\DonationConfirmation;
 
 class DonationController extends Controller
 {
@@ -174,6 +176,7 @@ class DonationController extends Controller
                 'email' => auth()->user()->email, // Usar email do usuário logado
                 'telefone' => $allData['telefone'],
                 'data_nascimento' => $dataNascimento,
+                'sexo' => 'outro', // Valor padrão já que não coletamos no formulário
                 'aceita_comunicacoes' => $allData['aceita_comunicacoes'] ? 1 : 0,
                 'tipo_doacao' => $allData['tipo_doacao'],
                 'valor' => $allData['valor_customizado'] ?? null,
@@ -205,6 +208,17 @@ class DonationController extends Controller
                 'instrucoes' => $allData['instrucoes'] ?? null
             ]);
 
+            // Enviar e-mail de confirmação
+            try {
+                Mail::to($doacao->email)->send(new DonationConfirmation($doacao));
+            } catch (\Exception $e) {
+                \Log::warning('Erro ao enviar e-mail de confirmação:', [
+                    'doacao_id' => $doacao->id,
+                    'email' => $doacao->email,
+                    'error' => $e->getMessage()
+                ]);
+            }
+
             return redirect()->route('donation.status')
                 ->with('success', 'Doação registrada com sucesso!');
 
@@ -234,7 +248,13 @@ class DonationController extends Controller
     {
         $userEmail = auth()->user()->email;
         
-        $doacoes = Doacao::where('email', $userEmail)
+        // Otimização: Selecionar apenas campos necessários
+        $doacoes = Doacao::select([
+                'id', 'nome', 'email', 'tipo_doacao', 'valor', 'descricao_itens',
+                'status', 'observacoes', 'data_recebimento', 'created_at', 'updated_at',
+                'logradouro', 'numero', 'complemento', 'bairro', 'cidade', 'estado', 'cep'
+            ])
+            ->where('email', $userEmail)
             ->orderBy('created_at', 'desc')
             ->get();
             

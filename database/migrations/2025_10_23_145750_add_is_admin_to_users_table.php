@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('doacoes', function (Blueprint $table) {
-            $table->dropColumn('sexo');
+        Schema::table('users', function (Blueprint $table) {
+            $table->boolean('is_admin')->default(false);
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('doacoes', function (Blueprint $table) {
-            $table->enum('sexo', ['masculino', 'feminino', 'outro'])->after('data_nascimento');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('is_admin');
         });
     }
 };

@@ -46,6 +46,16 @@
                                         <span class="dropdown-arrow">▼</span>
                                     </button>
                                     <div class="user-dropdown" id="userDropdown">
+                                        @if(Auth::user()->is_admin)
+                                            <!-- Opções Administrativas -->
+                                            <a href="{{ route('admin.dashboard') }}" class="dropdown-item admin-item">
+                                                <span class="dropdown-icon">🏠</span>
+                                                Dashboard Admin
+                                            </a>
+                                            <hr class="dropdown-divider">
+                                        @endif
+                                        
+                                        <!-- Opções Padrão -->
                                         <a href="{{ route('account') }}" class="dropdown-item">
                                             <span class="dropdown-icon">👤</span>
                                             Conta

@@ -38,7 +38,7 @@ return new class extends Migration
             $table->string('estado', 2);
             
             // Status da doação
-            $table->enum('status', ['pendente', 'confirmada', 'recebida', 'cancelada'])->default('pendente');
+            $table->enum('status', ['pendente', 'em_espera', 'aceita', 'recusada', 'reagendada', 'confirmada', 'recebida', 'cancelada'])->default('pendente');
             $table->text('observacoes')->nullable();
             $table->timestamp('data_recebimento')->nullable();
             
